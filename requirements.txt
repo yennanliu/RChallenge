@@ -1,1 +1,5 @@
 pytest
+Flask
+Flask-HTTPAuth
+Flask-RESTful
+Jinja2
