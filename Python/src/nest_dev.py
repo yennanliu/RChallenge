@@ -2,11 +2,10 @@ import argparse
 import json
 import sys
 
-def parse_args():
-    pass 
-
 def read_stdin_input():
-    # load input from stdin
+    """
+    load input via stdin
+    """
     input_data = ''
     for line in sys.stdin.readlines():
         input_data += line 
@@ -14,12 +13,19 @@ def read_stdin_input():
     return json.loads(input_data)
 
 
-def read_file_input():
-    pass
+def read_file_input(json_file):
+    """
+    load input via json load 
+    """
+    with open(json_file) as json_data:
+        data = json.load(json_data)
+    return data 
+
 
 def append_not_listed(nlevels, data):
-    ''' Returns a list of dicts of not considered keys in nlevels '''
-
+    """
+    return list of dicts which are not in the json_keys from CLI args 
+    """
     not_listed = []
     for key in data:
         if key not in nlevels:
