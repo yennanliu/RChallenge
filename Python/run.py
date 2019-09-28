@@ -1,6 +1,7 @@
 import sys
-sys.path.append("./nest/")
+sys.path.append(".")
 from nest.Nest import Json2NestedJson 
 
-json2nestedjson = Json2NestedJson()
-json2nestedjson.run()
+if __name__ == '__main__':
+    json2nestedjson = Json2NestedJson()
+    json2nestedjson.run()
