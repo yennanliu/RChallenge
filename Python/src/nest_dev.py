@@ -22,15 +22,14 @@ def read_file_input(json_file):
     return data 
 
 
-def append_not_listed(nlevels, data):
+def append_not_listed(json_keys, data):
     """
     return list of dicts which are not in the json_keys from CLI args 
     """
     not_listed = []
     for key in data:
-        if key not in nlevels:
+        if key not in json_keys:
             not_listed.append({key: data[key]})
-
     return not_listed
 
 def process_for_output(input_data, json_keys):
@@ -51,9 +50,24 @@ def process_for_output(input_data, json_keys):
         tmp = output
     return output
 
-if __name__ == '__main__':
+def main():
+    """
+    function parse input json to final nested outout json with the CLI args 
+    """
+    parser = argparse.ArgumentParser(description='CLI for process json')
+    # parse CLI arg : keys levels for final output json  
+    parser.add_argument('output_dict_keys', 
+        type=str, 
+        nargs='+',
+        help="""run the script via : \n
+             cat Python/data/input.json  | python Python/src/nest_dev.py <key1> <key2> ... \n
+             e.g. :  cat Python/data/input.json | python Python/src/nest_dev.py country city currency""")
+    args = parser.parse_args()
+    # load the json data via stdin 
     json_data = read_stdin_input()
-    #print (json_data)
-    json_keys = ['country' ,'city', 'currency']
-    output = process_for_output(json_data, json_keys)
-    print (json.dumps(output, indent=2))
+    # transform json to final output form  
+    output = process_for_output(json_data, args.output_dict_keys)
+    print (json.dumps(output, indent=2)) 
+
+if __name__ == '__main__':
+    main()
