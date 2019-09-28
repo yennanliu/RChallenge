@@ -3,9 +3,9 @@ import pytest, unittest
 import os 
 
 def test_input_json_exist():
-	"""
-	test if input json file exist 
-	"""
+    """
+    test if input json file exist 
+    """
     file_exist = os.path.isfile('data/input.json')
     assert file_exist == True   
 
