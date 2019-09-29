@@ -6,8 +6,7 @@ from nest.Nest import Json2NestedJson
 
 class TestAppendNotListed(unittest.TestCase):
     """
-    mock Json2NestedJson.append_not_listed method here 
-    and check if method return is in a needed form
+    test Json2NestedJson.append_not_listed method 
     """
     def test_run(self):
         json2nestedjon = Json2NestedJson()

@@ -6,8 +6,7 @@ from nest.Nest import Json2NestedJson
 
 class TestProcessForOutput(unittest.TestCase):
     """
-    mock Json2NestedJson.process_for_output method here 
-    and check if method return is in a needed form
+    test Json2NestedJson.process_for_output method 
     """
     def test_run(self):
         json2nestedjon = Json2NestedJson()

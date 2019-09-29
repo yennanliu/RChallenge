@@ -4,7 +4,7 @@ import sys
 
 class Json2NestedJson:
     """
-    main class offer json to nested json transformation 
+    main class doing json to nested json transformation 
     """
     def read_stdin_input(self):
         """
@@ -28,7 +28,7 @@ class Json2NestedJson:
 
     def append_not_listed(self, json_keys, data):
         """
-        return list of dicts which are not in the json_keys from CLI args 
+        return list of keys not included CLI args for output nested json values
         """
         not_listed = []
         for key in data:
@@ -38,7 +38,7 @@ class Json2NestedJson:
 
     def process_for_output(self, input_data, json_keys):
         """
-        parse CLI args, transform input data to json output  
+        parse CLI args, transform args output nested json keys  
         """
         output = {}
         tmp = output
@@ -56,7 +56,7 @@ class Json2NestedJson:
 
     def run(self):
         """
-        function parse input json to final nested outout json with the CLI args 
+        main function run the whole process (read_stdin_input -> append_not_listed/process_for_output)
         """
         parser = argparse.ArgumentParser(description='CLI for process json')
         # parse CLI arg : keys levels for final output json  
