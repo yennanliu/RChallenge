@@ -17,13 +17,28 @@
 <summary>Python quick start</summary>
 
 ```bash
-# run the json transformation  process
+# Run the Json-2-nested-json process
 $ git clone https://github.com/yennanliu/RChallenge.git
 $ cd RChallenge  && pip install -r requirements.txt 
 $ cat data/input.json  | python Python/run.py country city currency
 
-# run tests 
+# Run the tests 
 $ pytest -v tests/
+
+# =========================================== test session starts ============================================
+# platform darwin -- Python 3.5.4, pytest-5.0.1, py-1.8.0, pluggy-0.12.0 -- /Users/yennanliu/anaconda3/envs/ds_dash/bin/python
+# cachedir: .pytest_cache
+# rootdir: /Users/yennanliu/RChallenge
+# plugins: celery-4.2.1
+# collected 5 items                                                                                          
+
+# tests/test_append_not_listed.py::TestAppendNotListed::test_run PASSED                                [ 20%]
+# tests/test_input_data_exist.py::test_input_json_exist PASSED                                         [ 40%]
+# tests/test_process_for_output.py::TestProcessForOutput::test_run PASSED                              [ 60%]
+# tests/test_read_file_input.py::test_read_file_input PASSED                                           [ 80%]
+# tests/test_read_stdin_input.py::TestReadStdinInput::test_run PASSED                                  [100%]
+
+# ========================================= 5 passed in 0.18 seconds =========================================
 
 ```
 </details>
@@ -34,7 +49,7 @@ $ pytest -v tests/
 <summary>REST API quick start</summary>
 
 ```bash 
-### 1) Aun the api server
+### 1) Run the api server
 $ python REST/app.py 
 
 ### 2) Access API without userid, password 
