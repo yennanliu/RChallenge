@@ -2,7 +2,19 @@
 
 ### SQL 
 
+<details>
+<summary>SQL quick start</summary>
+
+```bash
+# dev
+```
+</details>
+
+
 ### Python 
+
+<details>
+<summary>Python quick start</summary>
 
 ```bash
 # run the json transformation  process
@@ -14,8 +26,12 @@ $ cat data/input.json  | python Python/run.py country city currency
 $ pytest -v tests/
 
 ```
+</details>
 
-### REST
+### REST API 
+
+<details>
+<summary>REST API quick start</summary>
 
 ```bash 
 ### access API without userid, password 
@@ -88,3 +104,4 @@ $ curl -i -H "Content-Type: application/json" -X POST -d '{"input_json":"data/in
 # }
 
 ```
+</details>
