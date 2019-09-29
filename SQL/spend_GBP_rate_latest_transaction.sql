@@ -1,3 +1,22 @@
+--------------------------------------
+-- # spend_GBP_rate_latest_transaction
+--------------------------------------
+
+/*
+* Explanation : 
+Make 1st CTE exchange_ts : get the all exchange rate with ts, from-to currency, and rate
+Make 2nd CTE exchange_ts_lag : create "time intervals" by lagging exchange_rates ts  
+                               for getting latest exchange_rates for every transaction 
+Make 3rd CTE trans_to_GBP : transform  non-GBP transactions to GBP 
+                            based on latest exchange_rates for every transaction  
+Make 4rd CTE trans_in_GBP : get  GBP transactions
+Make 5rd CTE trans_ : union non-GBP transaction, and GBP transactions in GBP currency
+Finally query the CTE trans_ and sum transaction amount in GBP per user 
+
+* Steps : 
+largest timestamp -> exchange rate ->  exchange rate lag -> transactions in/non GBP within lastest exchange rate each transactions -> final result
+*/
+
 WITH exchange_ts AS
   (SELECT ts,
           from_currency,
