@@ -17,12 +17,63 @@
 <summary>Python quick start</summary>
 
 ```bash
-# Run the Json-2-nested-json process
+# 1) Run the Json-2-nested-json process
 $ git clone https://github.com/yennanliu/RChallenge.git
 $ cd RChallenge  && pip install -r requirements.txt 
 $ cat data/input.json  | python Python/run.py country city currency
 
-# Run the tests 
+# {
+#   "FR": {
+#     "Lyon": {
+#       "EUR": [
+#         {
+#           "amount": 11.4
+#         }
+#       ]
+#     },
+#     "Paris": {
+#       "EUR": [
+#         {
+#           "amount": 20
+#         }
+#       ]
+#     }
+#   },
+#   "UK": {
+#     "London": {
+#       "GBP": [
+#         {
+#           "amount": 12.2
+#         }
+#       ],
+#       "FBP": [
+#         {
+#           "amount": 10.9
+#         }
+#       ]
+#     }
+#   },
+#   "US": {
+#     "Boston": {
+#       "USD": [
+#         {
+#           "amount": 100
+#         }
+#       ]
+#     }
+#   },
+#   "ES": {
+#     "Madrid": {
+#       "EUR": [
+#         {
+#           "amount": 8.9
+#         }
+#       ]
+#     }
+#   }
+# }
+
+# 2) Run the tests 
 $ pytest -v tests/
 
 # =========================================== test session starts ============================================
