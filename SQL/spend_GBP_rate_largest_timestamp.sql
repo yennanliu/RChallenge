@@ -1,3 +1,19 @@
+--------------------------------------
+-- # pend_GBP_rate_largest_timestamp
+--------------------------------------
+
+/* 
+-- * Explanation : 
+-- Make 1st CTE largest_exchange_ts : get the largest exchange timestamp 
+-- Make 2nd CTE largest_timestamp_exchange : get exchange rate at largest exchange timestamp 
+-- Make 3rd CTE trans_to_GBP : transform  non-GBP transactions to GBP based on exchange rate above 
+-- Make 4rd CTE trans_in_GBP : get  GBP transactions
+-- Make 5rd CTE trans_ : union non-GBP transaction, and GBP transactions in GBP currency
+-- Finally query the CTE trans_ and sum transaction amount in GBP per user 
+
+-- * Steps : largest timestamp -> exchange rate -> transactions in/non GBP -> final result
+*/
+
 WITH largest_exchange_ts AS
   (SELECT from_currency,
           to_currency,
