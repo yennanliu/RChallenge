@@ -34,7 +34,10 @@ $ pytest -v tests/
 <summary>REST API quick start</summary>
 
 ```bash 
-### access API without userid, password 
+### 1) Aun the api server
+$ python REST/app.py 
+
+### 2) Access API without userid, password 
 $ curl -i -H "Content-Type: application/json" -X POST -d '{"input_json":"data/input.json", "keys":["country", "city"]}' http://localhost:5000/REST/api/v1.0/nest
 
 # HTTP/1.0 401 UNAUTHORIZED
@@ -44,8 +47,9 @@ $ curl -i -H "Content-Type: application/json" -X POST -d '{"input_json":"data/in
 # Server: Werkzeug/0.14.1 Python/3.5.4
 # Date: Sun, 29 Sep 2019 06:30:01 GMT
 
-### access API with userid, password 
+### 2)' Access API with userid, password 
 $ curl -i -H "Content-Type: application/json" -X POST -d '{"input_json":"data/input.json", "keys":["country", "city"]}' http://localhost:5000/REST/api/v1.0/nest --user api_user:password
+
 # HTTP/1.0 201 CREATED
 # Content-Type: text/html; charset=utf-8
 # Content-Length: 576
