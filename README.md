@@ -1,5 +1,23 @@
 # RChallenge
 
+### Intro
+- dev 
+- Tech : python3 , pytest, Flask, flask_httpauth
+
+### File structure 
+
+```
+├── Python             : Python script for json transformation
+├── README.md          : Repo intro
+├── REST               : REST api flask offer json transformation service 
+├── SQL                : SQL query get transactions insights 
+├── data               : input.json as sample data for Python script, Rest api
+├── nest               : Class that offer "json to nested json" methods 
+├── requirements.txt   : Python app dependency
+└── tests              : Collections of unit tests 
+
+```
+
 ### SQL 
 
 <details>
