@@ -1,4 +1,5 @@
 import os, json 
+from flask_httpauth import HTTPBasicAuth
 from flask import (Flask, 
                    jsonify, 
                    abort, 
@@ -10,19 +11,32 @@ sys.path.append(".")
 from nest.Nest import Json2NestedJson 
 
 app = Flask(__name__)
+auth = HTTPBasicAuth()
 
-# api hello world 
+## Credentials to access the API
+USER_PASSWORD = {'api_user': 'password'}
+
+# API hello world 
 @app.route('/')
 def index():
-    return "API Hello, World!"
+    return "API Hello World!", 200
 
 # handle error
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
-# POST method 
+# auth verify if user can access API service  
+@auth.verify_password
+def verify_access(username, password):
+    # not allowing access API if no username or password 
+    if not username or not password:
+        return False 
+    return USER_PASSWORD.get(username) == password
+
+# main method run REST nest api via POST 
 @app.route('/REST/api/v1.0/nest', methods=['POST'])
+@auth.login_required
 def transorm_json_2_nested_json():
     data = request.json 
     json2nestedjson = Json2NestedJson()
