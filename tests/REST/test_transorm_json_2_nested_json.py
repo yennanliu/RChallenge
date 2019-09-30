@@ -7,7 +7,7 @@ from REST.app import *
 
 def test_transorm_json_2_nested_json():
     """
-    simulate the POST request with headers, data (CLI args), and API auth
+    simulate http POST with requests call with headers, data (CLI args), and auth (user, password)
     test if API can work fine with http 201 status 
     """
     headers = {'Content-Type': 'application/json'}
