@@ -5,9 +5,9 @@ import sys
 sys.path.append(".")
 from REST.app import * 
 
-def test_api_helloworld():
-    response = requests.get('http://0.0.0.0:5000/')
-    assert response.status_code == 200
+def test_404_page_not_found():
+    response = requests.get('http://0.0.0.0:5000/this_page_not_exists')
+    assert response.status_code == 404
 
 if __name__ == '__main__':
     pytest.main([__file__])
