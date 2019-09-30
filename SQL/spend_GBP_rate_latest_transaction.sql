@@ -14,7 +14,7 @@ Make 5rd CTE trans_ : union non-GBP transaction, and GBP transactions in GBP cur
 Finally query the CTE trans_ and sum transaction amount in GBP per user 
 
 * Steps : 
-largest timestamp -> exchange rate ->  exchange rate lag -> transactions in/non GBP within lastest exchange rate each transactions -> final result
+all exchange rate with from/to currency and timestamp -> exchange rate lag -> transactions in/non GBP within latest exchange_rates before every transaction -> final result
 */
 
 WITH exchange_ts AS

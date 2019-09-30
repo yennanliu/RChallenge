@@ -1,6 +1,6 @@
 # RChallenge
 
-### Intro
+### INTRO
 - SQL | Python | REST
 - Tech : python3, pytest, Flask, flask_httpauth, Postgre
 
@@ -24,21 +24,33 @@
 <summary>SQL quick start</summary>
 
 ###### SQL/spend_GBP_rate_largest_timestamp.sql
-	- query that transfrom all spend in GBP by each user with the largest timestamp exchange rate.  
-	- Explanation:	
-		- Make 1st CTE `largest_exchange_ts` : get largest exchange timestamp 
-		- Make 2nd CTE `largest_timestamp_exchange` : get exchange rate at largest exchange timestamp 
-		- Make 3rd CTE `trans_to_GBP` : transform non-GBP transactions to GBP based on exchange rate above 
-		- Make 4rd CTE `trans_in_GBP` : get GBP transactions
-		- Make 5rd CTE `trans_` : get all non-GBP and GBP transactions in GBP currency (via SQL union)
-		- Finally query the CTE trans_ and sum transaction amount in GBP per user 
+- Query that transfrom all spend in GBP by each user with the largest timestamp exchange rate.
 
-	- Steps:
-		- largest timestamp -> exchange rate -> transactions in/non GBP -> final result
+- Explanation:	
+	- Make 1st CTE `largest_exchange_ts` : get largest exchange timestamp 
+	- Make 2nd CTE `largest_timestamp_exchange` : get exchange rate at largest exchange timestamp 
+	- Make 3rd CTE `trans_to_GBP` : transform non-GBP transactions to GBP based on exchange rate above 
+	- Make 4rd CTE `trans_in_GBP` : get GBP transactions
+	- Make 5rd CTE `trans_` : get all non-GBP and GBP transactions in GBP currency (via SQL union)
+	- Finally query the CTE trans_ and sum transaction amount in GBP per user 
+
+- Steps:
+	- largest timestamp -> exchange rate -> transactions in/non GBP -> final result
 
 ###### SQL/spend_GBP_rate_latest_transaction.sql
-	- query that transfrom all spend in GBP by each user with the latest exchange rate which is smaller or equal then the transaction timestamp.  
-	- 
+- Query that transfrom all spend in GBP by each user with the latest exchange rate which is smaller or equal then the transaction timestamp.  
+
+- Explanation:
+	- Make 1st CTE `exchange_ts` : get the all exchange rate with timestamp, from_currency, to_from_currency and exchange rate
+	- Make 2nd CTE `exchange_ts_lag` : create "time intervals" by lagging exchange_rates timestamp for getting latest exchange_rates before every transaction 
+	- Make 3rd CTE `trans_to_GBP` : transform  non-GBP transactions to GBP 
+                            based on exchange_rates defined above  
+	- Make 4rd CTE trans_in_GBP : get GBP transactions
+	- Make 5rd CTE trans_ : get all non-GBP and GBP transactions in GBP currency (via SQL union)
+	- Finally query the CTE trans_ and sum transaction amount in GBP per user 
+
+- Steps:
+	- all exchange rate with from/to currency and timestamp -> exchange rate lag -> transactions in/non GBP within latest exchange_rates before every transaction -> final result
 
 ###### Demo 
 
