@@ -1,3 +1,4 @@
 pytest
 Flask
 flask_httpauth
+requests
