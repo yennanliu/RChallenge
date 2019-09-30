@@ -1,5 +1,5 @@
 --------------------------------------
--- # spend_GBP_rate_latest_transaction
+-- # spend_GBP_rate_latest_transaction.sql
 --------------------------------------
 
 /*

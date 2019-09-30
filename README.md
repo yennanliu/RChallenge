@@ -32,7 +32,7 @@
 	- Make 3rd CTE `trans_to_GBP` : transform non-GBP transactions to GBP based on exchange rate above 
 	- Make 4rd CTE `trans_in_GBP` : get GBP transactions
 	- Make 5rd CTE `trans_` : get all non-GBP and GBP transactions in GBP currency (via SQL union)
-	- Finally query the CTE trans_ and sum transaction amount in GBP per user 
+	- Finally query the CTE `trans_` and sum transaction amount in GBP per user 
 
 - Steps:
 	- largest timestamp -> exchange rate -> transactions in/non GBP -> final result
@@ -45,9 +45,9 @@
 	- Make 2nd CTE `exchange_ts_lag` : create "time intervals" by lagging exchange_rates timestamp for getting latest exchange_rates before every transaction 
 	- Make 3rd CTE `trans_to_GBP` : transform  non-GBP transactions to GBP 
                             based on exchange_rates defined above  
-	- Make 4rd CTE trans_in_GBP : get GBP transactions
-	- Make 5rd CTE trans_ : get all non-GBP and GBP transactions in GBP currency (via SQL union)
-	- Finally query the CTE trans_ and sum transaction amount in GBP per user 
+	- Make 4rd CTE `trans_in_GBP` : get GBP transactions
+	- Make 5rd CTE `trans_` : get all non-GBP and GBP transactions in GBP currency (via SQL union)
+	- Finally query the CTE `trans_` and sum transaction amount in GBP per user 
 
 - Steps:
 	- all exchange rate with from/to currency and timestamp -> exchange rate lag -> transactions in/non GBP within latest exchange_rates before every transaction -> final result

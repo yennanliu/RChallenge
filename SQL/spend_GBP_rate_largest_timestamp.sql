@@ -1,5 +1,5 @@
 --------------------------------------
--- # spend_GBP_rate_largest_timestamp
+-- # spend_GBP_rate_largest_timestamp.sql
 --------------------------------------
 
 /*
