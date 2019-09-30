@@ -236,8 +236,9 @@ $ cat data/input.json  | python Python/run.py country city currency
 #   }
 # }
 
-# 2) Run the tests 
-$ pytest -v tests/
+# 2) Run the tests  
+$ python REST/app.py  # run the REST app first for REST api unit tests as well 
+$ pytest -v tests/    # run all the unit tests 
 
 # =========================================== test session starts ============================================
 # platform darwin -- Python 3.5.4, pytest-5.0.1, py-1.8.0, pluggy-0.12.0 -- /Users/yennanliu/anaconda3/envs/ds_dash/bin/python
