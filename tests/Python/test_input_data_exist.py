@@ -1,5 +1,5 @@
 # test module 
-import pytest, unittest
+import pytest
 import os 
 
 def test_input_json_exist():

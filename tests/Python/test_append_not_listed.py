@@ -1,7 +1,6 @@
 import sys
 sys.path.append(".")
 import unittest
-from unittest.mock import patch
 from nest.Nest import Json2NestedJson 
 
 class TestAppendNotListed(unittest.TestCase):

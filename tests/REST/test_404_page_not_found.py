@@ -1,4 +1,4 @@
-import os, requests
+import requests
 import pytest
 # REST flask app 
 import sys
