@@ -9,6 +9,9 @@ class Json2NestedJson:
     def read_stdin_input(self):
         """
         load input via stdin
+
+        : inpit  : stdin
+        : output : python dict 
         """
         input_data = ''
         for line in sys.stdin.readlines():
@@ -20,6 +23,9 @@ class Json2NestedJson:
     def read_file_input(self, json_file):
         """
         load input via json load 
+
+        : input  : json file 
+        : output : python dict 
         """
         with open(json_file) as json_data:
             data = json.load(json_data)
@@ -29,6 +35,13 @@ class Json2NestedJson:
     def append_not_listed(self, json_keys, data):
         """
         return list of keys not included CLI args for output nested json values
+
+        : input :
+            json_keys : python array. e.g. : ["country","currency","city"]
+            data      : python dict.  e.g. : {'amount': 100, 'city': 'Boston', 'country': 'US', 'currency': 'USD'}
+        
+        : output :  
+            python array with dict. e.g. : [{'amount': 100}]
         """
         not_listed = []
         for key in data:
@@ -38,7 +51,14 @@ class Json2NestedJson:
 
     def process_for_output(self, input_data, json_keys):
         """
-        parse CLI args, transform args output nested json keys  
+        parse CLI args, transform args output nested json keys 
+
+        :input  : 
+            json_keys  : python array. e.g. : ["country","currency","city"]
+            input_data : python array with dict.  e.g. : [{'amount': 100, 'city': 'Boston', 'country': 'US', 'currency': 'USD'}] 
+
+        :output :
+            python array. e.g. : {'ES': {'EUR': {'Madrid': [{'amount': 8.9}]}}}
         """
         output = {}
         tmp = output
@@ -57,6 +77,9 @@ class Json2NestedJson:
     def run(self):
         """
         main function run the whole process (read_stdin_input -> append_not_listed/process_for_output)
+        
+        :input  : stdin
+        :output : python dict 
         """
         parser = argparse.ArgumentParser(description='CLI for process json')
         # parse CLI arg : keys levels for final output json  
