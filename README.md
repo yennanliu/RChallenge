@@ -54,6 +54,123 @@
 
 ###### Demo 
 
+```sql 
+
+# SQL/spend_GBP_rate_largest_timestamp.sql
+
+psql> 
+
+WITH largest_exchange_ts AS
+  (SELECT from_currency,
+          to_currency,
+          max(ts) AS ts
+   FROM exchange_rates
+   WHERE to_currency = 'GBP'
+   GROUP BY from_currency,
+            to_currency),
+     largest_timestamp_exchange AS
+  (SELECT e.from_currency AS from_currency,
+          e.rate AS rate
+   FROM exchange_rates e
+   INNER JOIN largest_exchange_ts l ON e.from_currency = l.from_currency
+   AND e.to_currency = l.to_currency
+   AND e.ts = l.ts),
+     trans_to_GBP AS
+  (SELECT t.user_id AS user_id,
+          t.ts AS ts,
+          l.from_currency AS currency,
+          t.amount*l.rate AS amount_GBP
+   FROM transactions t
+   INNER JOIN largest_timestamp_exchange l ON l.from_currency = t.currency),
+     trans_in_GBP AS
+  (SELECT user_id,
+          ts,
+          currency,
+          amount AS amount_gbp
+   FROM transactions
+   WHERE currency = 'GBP' ),
+     trans_ AS
+  (SELECT *
+   FROM trans_to_GBP
+   UNION ALL SELECT *
+   FROM trans_in_GBP)
+SELECT user_id AS user_id,
+       SUM(amount_gbp) AS total_spent_gbp
+FROM trans_
+GROUP BY user_id
+ORDER BY user_id; 
+
+ user_id | total_spent_gbp 
+---------+-----------------
+       1 |         23.7970
+       2 |         42.7370
+       3 |               2
+       4 |            3.24
+(4 rows)
+
+
+```
+
+```sql
+
+# SQL/spend_GBP_rate_latest_transaction.sql
+
+psql> 
+
+WITH exchange_ts AS
+  (SELECT ts,
+          from_currency,
+          to_currency,
+          rate
+   FROM exchange_rates
+   WHERE to_currency = 'GBP'),
+     exchange_ts_lag AS
+  (SELECT *,
+          lag(ts, -1, NULL) OVER (PARTITION BY from_currency,
+                                               to_currency
+                                  ORDER BY ts) AS ts_lag
+   FROM exchange_rates
+   WHERE to_currency = 'GBP' ),
+     trans_to_GBP AS
+  (SELECT t.user_id AS user_id,
+          t.ts AS ts,
+          t.currency AS currency,
+          t.amount*e.rate AS amount_GBP
+   FROM transactions t
+   INNER JOIN exchange_ts_lag e ON e.from_currency = t.currency
+   AND (t.ts >= e.ts
+        AND (e.ts_lag > t.ts
+             OR e.ts_lag IS NULL))),
+     trans_in_GBP AS
+  (SELECT user_id,
+          ts,
+          currency,
+          amount AS amount_gbp
+   FROM transactions
+   WHERE currency = 'GBP' ),
+     trans_ AS
+  (SELECT *
+   FROM trans_to_GBP
+   UNION ALL SELECT *
+   FROM trans_in_GBP)
+SELECT user_id AS user_id,
+       SUM(amount_gbp) AS total_spent_gbp
+FROM trans_
+GROUP BY user_id
+ORDER BY user_id;
+
+ user_id | total_spent_gbp 
+---------+-----------------
+       1 |         24.7780
+       2 |         43.4720
+       3 |               2
+       4 |            3.84
+(4 rows)
+
+
+
+```
+
 
 </details>
 
