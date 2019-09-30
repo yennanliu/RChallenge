@@ -21,7 +21,7 @@ USER_PASSWORD = {'api_user': 'password'}
 def index():
     return "API Hello World!", 200
 
-# handle error
+# return 404 if not valid API url 
 @app.errorhandler(404)
 def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
@@ -38,10 +38,10 @@ def verify_access(username, password):
 @app.route('/REST/api/v1.0/nest', methods=['POST'])
 @auth.login_required
 def transorm_json_2_nested_json():
-    data = request.json 
+    cli_args = request.json 
     json2nestedjson = Json2NestedJson()
-    input_data = json2nestedjson.read_file_input(data['input_json'])
-    response = json.dumps(json2nestedjson.process_for_output(input_data,data['keys']), indent=2,sort_keys=True)
+    input_data = json2nestedjson.read_file_input(cli_args['input_json'])
+    response = json.dumps(json2nestedjson.process_for_output(input_data, cli_args['keys']), indent=2,sort_keys=True)
     print (response)
     return (response), 201
 
