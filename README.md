@@ -246,12 +246,15 @@ $ pytest -v tests/    # run all the unit tests
 # rootdir: /Users/yennanliu/RChallenge
 # plugins: celery-4.2.1
 # collected 5 items                                                                                          
-
-# tests/test_append_not_listed.py::TestAppendNotListed::test_run PASSED                                [ 20%]
-# tests/test_input_data_exist.py::test_input_json_exist PASSED                                         [ 40%]
-# tests/test_process_for_output.py::TestProcessForOutput::test_run PASSED                              [ 60%]
-# tests/test_read_file_input.py::test_read_file_input PASSED                                           [ 80%]
-# tests/test_read_stdin_input.py::TestReadStdinInput::test_run PASSED                                  [100%]
+# tests/Python/test_append_not_listed.py::TestAppendNotListed::test_run PASSED                         [ 11%]
+# tests/Python/test_input_data_exist.py::test_input_json_exist PASSED                                  [ 22%]
+# tests/Python/test_process_for_output.py::TestProcessForOutput::test_run PASSED                       [ 33%]
+# tests/Python/test_read_file_input.py::test_read_file_input PASSED                                    [ 44%]
+# tests/Python/test_read_stdin_input.py::TestReadStdinInput::test_run PASSED                           [ 55%]
+# tests/REST/test_404_page_not_found.py::test_404_page_not_found PASSED                                [ 66%]
+# tests/REST/test_api_helloworld.py::test_api_helloworld PASSED                                        [ 77%]
+# tests/REST/test_transorm_json_2_nested_json.py::test_transorm_json_2_nested_json PASSED              [ 88%]
+# tests/REST/test_verify_access.py::test_verify_access PASSED                                          [100%]
 
 # ========================================= 5 passed in 0.18 seconds =========================================
 
