@@ -1,8 +1,8 @@
 # RChallenge
 
 ### Intro
-- dev 
-- Tech : python3 , pytest, Flask, flask_httpauth
+- SQL | Python | REST
+- Tech : python3, pytest, Flask, flask_httpauth, Postgre
 
 ### File structure 
 
@@ -10,7 +10,7 @@
 ├── Python             : Python script for json transformation
 ├── README.md          : Repo intro
 ├── REST               : REST api flask offer json transformation service 
-├── SQL                : SQL query get transactions insights 
+├── SQL                : query get transactions in GBP with exchange rate
 ├── data               : input.json as sample data for Python script, Rest api
 ├── nest               : Class that offer "json to nested json" methods 
 ├── requirements.txt   : Python app dependency
@@ -23,9 +23,26 @@
 <details>
 <summary>SQL quick start</summary>
 
-```bash
-# dev
-```
+###### SQL/spend_GBP_rate_largest_timestamp.sql
+	- query that transfrom all spend in GBP by each user with the largest timestamp exchange rate.  
+	- Explanation:	
+		- Make 1st CTE `largest_exchange_ts` : get largest exchange timestamp 
+		- Make 2nd CTE `largest_timestamp_exchange` : get exchange rate at largest exchange timestamp 
+		- Make 3rd CTE `trans_to_GBP` : transform non-GBP transactions to GBP based on exchange rate above 
+		- Make 4rd CTE `trans_in_GBP` : get GBP transactions
+		- Make 5rd CTE `trans_` : get all non-GBP and GBP transactions in GBP currency (via SQL union)
+		- Finally query the CTE trans_ and sum transaction amount in GBP per user 
+
+	- Steps:
+		- largest timestamp -> exchange rate -> transactions in/non GBP -> final result
+
+###### SQL/spend_GBP_rate_latest_transaction.sql
+	- query that transfrom all spend in GBP by each user with the latest exchange rate which is smaller or equal then the transaction timestamp.  
+	- 
+
+###### Demo 
+
+
 </details>
 
 
@@ -36,8 +53,7 @@
 
 ```bash
 # 1) Run the Json-2-nested-json process
-$ git clone https://github.com/yennanliu/RChallenge.git
-$ cd RChallenge  && pip install -r requirements.txt 
+$ pip install -r requirements.txt 
 $ cat data/input.json  | python Python/run.py country city currency
 
 # {
