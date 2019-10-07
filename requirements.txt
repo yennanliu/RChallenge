@@ -2,3 +2,4 @@ pytest
 Flask
 flask_httpauth
 requests
+coveralls

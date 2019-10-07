@@ -11,3 +11,9 @@ install:
 # command to run tests
 script:
   - pytest -v tests/
+  - coverage run tests/test_404_page_not_found.py
+  - coverage run tests/test_api_helloworld.py 
+
+after_success:
+  - coverage report
+  - coveralls
